@@ -30,6 +30,8 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('To-Do', header_text)
 
 
+
+
         # Ей сразу же предлагается ввести элемент списка
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
         self.assertEqual(
