@@ -44,7 +44,7 @@ class NewVisitorTest(unittest.TestCase):
         rows = table.find_elements(By.TAG_NAME, 'tr')
         self.assertTrue(
             any(row.text == '1: Buy new item' for row in rows),
-            "The new list element did not appear"
+            "The new list element did not appear in a table"
         )
 
         # The text field is proposing to add another one element
