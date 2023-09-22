@@ -15,9 +15,9 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from superlists.lists import views
-# from django.contrib import admin
-# from django.urls import path, include
+from lists import views
+from django.contrib import admin
+from django.urls import path
 
 
 urlpatterns = [
