@@ -14,3 +14,9 @@ class HomePageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertTemplateUsed(response, 'lists/home.html')
 
+    def test_can_save_a_post_request(self):
+        '''Test: can safe POST request'''
+        responce = self.client.post('/', data={'item_text': 'A new list item'})
+        self.assertIn('A new list item', responce.content.decode())
+        self.assertTemplateUsed(responce, 'home.html')
+

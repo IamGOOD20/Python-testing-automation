@@ -32,7 +32,7 @@ class NewVisitorTest(unittest.TestCase):
 
         # she write in a text field "buy tools"
         # she work as a . . .
-        inputbox.send_keys('Buy something')
+        inputbox.send_keys('Exchange laziness on brain')
 
         # when she click enter, the page is update and now
         # the page has "1"
@@ -42,16 +42,24 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element(By.ID, 'id_list_table')
         rows = table.find_elements(By.TAG_NAME, 'tr')
-        self.assertTrue(
-            any(row.text == '1: Buy new item' for row in rows),
-            "The new list element did not appear in a table"
-        )
-
+        self.assertIn('1: Exchange laziness on brain', [row.text for row in rows])
+            # f"The new list element did not appear in a table. It consist of:\n{table.text}")
         # The text field is proposing to add another one element
         # She inputs "To make task 2"
+        inputbox = self.browser.find_element(By.ID, 'id_new_item')
+        inputbox.send_keys('Start working hard')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        table = self.browser.find_element(By.ID, 'id_list_table')
+        rows = table.find_elements(By.TAG_NAME, 'tr')
+        self.assertIn('1: Exchange laziness on brain', [row.text for row in rows])
+        self.assertIn(
+            '2: Start working hard',
+            [row.text for row in rows]
+        )
 
         self.fail('End test')
-
         # after page update it views both elements of her list
 
 if __name__ == '__main__':
