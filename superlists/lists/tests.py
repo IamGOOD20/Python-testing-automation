@@ -15,9 +15,12 @@ class HomePageTest(TestCase):
         self.assertTrue(html.strip().endswith('</html>'))
         self.assertTemplateUsed(response, 'lists/home.html')
 
-    def test_can_save_a_post_request(self):
+    def test_can_save_a_POST_request(self):
         '''Test: can safe POST request'''
         responce = self.client.post('/', data={'item_text': 'A new list item'})
+
+
+
         self.assertIn('A new list item', responce.content.decode())
         self.assertTemplateUsed(responce, 'lists/home.html')
 
@@ -36,15 +39,12 @@ class ItemModelTest(TestCase):
         second_item.save()
 
         saved_items = Item.objects.all()
-        print('check in ------->', saved_items)
         self.assertEqual(saved_items.count(), 2)
 
         first_saved_item = saved_items[0]
         second_saved_item = saved_items[1]
 
-        print('check in ------->', first_saved_item)
-
-        self.assertEqual(first_saved_item, 'The first (ever) list item')
-        self.assertEqual(second_saved_item, 'Item the second')
+        self.assertEqual(first_saved_item.text, 'The first (ever) list item')
+        self.assertEqual(second_saved_item.text, 'Item the second')
 
 
