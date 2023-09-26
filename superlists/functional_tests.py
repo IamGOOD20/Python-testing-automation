@@ -30,6 +30,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('To-Do', header_text)
 
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
+
         self.assertEqual(
             inputbox.get_attribute('placeholder'),
             'Enter a to-do item'
@@ -45,7 +46,7 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         self.check_for_row_in_list_table('1: Exchange laziness on brain')
 
-            # f"The new list element did not appear in a table. It consist of:\n{table.text}")
+        # f"The new list element did not appear in a table. It consist of:\n{table.text}")
         # The text field is proposing to add another one element
         # She inputs "To make task 2"
         inputbox = self.browser.find_element(By.ID, 'id_new_item')
